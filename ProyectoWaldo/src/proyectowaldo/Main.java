@@ -6,15 +6,9 @@
 package proyectowaldo;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -28,6 +22,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainView.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Menu Principal - Where's Waldo Generator");
         stage.setResizable(false);
         stage.show();
     }

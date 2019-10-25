@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,34 +11,37 @@
 
 <AnchorPane id="mainPane" fx:id="mainPane" prefHeight="900.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectowaldo.MainViewController">
     <children>
-        <StackPane id="gamePane" fx:id="gamePane" prefHeight="900.0" prefWidth="1100.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1">
+        <StackPane id="gamePane" fx:id="gamePane" prefHeight="900.0" prefWidth="1100.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" xmlns:fx="http://javafx.com/fxml/1">
             
         </StackPane>
-      <Pane fx:id="configPane" layoutX="960.0" prefHeight="700.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane layoutX="1100.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1100.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="44.0" layoutY="158.0" prefHeight="74.0" prefWidth="162.0" text="Where's Waldo Generator" textAlignment="CENTER" wrapText="true">
+            <ImageView fitHeight="140.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@../resources/waldito_wide.png" />
+               </image>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <Label layoutX="44.0" layoutY="147.0" prefHeight="74.0" prefWidth="162.0" text="Where's Waldo Generator" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="44.0" AnchorPane.rightAnchor="44.0">
                <font>
                   <Font size="21.0" />
                </font>
             </Label>
-            <Button layoutX="42.0" layoutY="248.0" mnemonicParsing="false" style="-fx-border-color: red; -fx-border-width: 2;" text="Administrar recursos..." />
-            <Button layoutX="52.0" layoutY="803.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="146.0" style="-fx-border-color: blue; -fx-border-width: 2;" text="GENERAR">
+            <Button fx:id="btnConfig" layoutX="32.0" layoutY="246.0" mnemonicParsing="false" onAction="#openConfigWindow" style="-fx-border-color: red; -fx-border-width: 2;" text="Administrar recursos..." AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <Button layoutX="52.0" layoutY="790.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="146.0" style="-fx-border-color: blue; -fx-border-width: 2;" text="GENERAR" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Button>
-            <Label layoutX="69.0" layoutY="331.0" text="Cant. Personajes:" />
-            <TextField fx:id="txtCantPersonajes" layoutX="32.0" layoutY="366.0" style="-fx-border-color: red; -fx-border-width: 2;" text="0" />
-            <Label layoutX="92.0" layoutY="424.0" text="Escenario:" />
-            <ComboBox layoutX="32.0" layoutY="461.0" prefHeight="31.0" prefWidth="186.0" style="-fx-border-color: red; -fx-border-width: 2;" />
-            <Separator layoutX="25.0" layoutY="310.0" prefWidth="200.0" />
-            <ImageView fitHeight="170.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/waldito_wide.png" />
-               </image>
-            </ImageView>
-            <Separator layoutX="27.0" layoutY="143.0" prefWidth="200.0" style="-fx-background-color: red;" />
+            <Label alignment="CENTER" layoutX="32.0" layoutY="356.0" text="Cant. Personajes:" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <TextField fx:id="txtCantPersonajes" layoutX="32.0" layoutY="386.0" style="-fx-border-color: red; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <Label alignment="CENTER" layoutX="32.0" layoutY="462.0" text="Escenario:" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <ComboBox layoutX="32.0" layoutY="499.0" prefHeight="31.0" prefWidth="186.0" style="-fx-border-color: red; -fx-border-width: 2;" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <Separator layoutX="16.0" layoutY="307.0" prefWidth="200.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
+            <Separator layoutX="25.0" layoutY="139.0" prefWidth="200.0" style="-fx-background-color: red;" />
          </children>
-      </Pane>
+      </AnchorPane>
     </children>
 </AnchorPane>

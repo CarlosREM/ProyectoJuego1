@@ -5,6 +5,7 @@
  */
 package proyectowaldo;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -13,13 +14,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import util.RandomGenerator;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  *
@@ -29,6 +37,8 @@ public class MainViewController implements Initializable {
        
     @FXML private StackPane gamePane;
     @FXML private Pane configPane;
+    
+    @FXML private Button btnConfig;
     @FXML private TextField txtCantPersonajes;
     
     @FXML
@@ -49,9 +59,13 @@ public class MainViewController implements Initializable {
                 }
             }
         });
+    }
+    
+    private void setupListeners() {
         
-        
-        Image image = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//waldito_wide.png", 200, 100, true, true);
+    }
+        /*
+        Image image = new Image("file:///C:\\Users\\carlo\\Pictures\\test sprites\\attack.png", 100, 200, false, false);
         ImageView waldo1 = new ImageView(image);
         ImageView waldo2 = new ImageView(image);
         ImageView waldo3 = new ImageView(image);
@@ -95,5 +109,28 @@ public class MainViewController implements Initializable {
         //waldo3.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));        
         
     }    
+    */
     
+    @FXML
+    private void openConfigWindow(ActionEvent event) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("ConfigView.fxml"));                    
+            Stage newWindow = new Stage();
+            newWindow.setTitle("Administrar Recursos - Where's Waldo Generator");
+            newWindow.setScene(new Scene(root));
+            newWindow.setResizable(false);
+            newWindow.initOwner(btnConfig.getScene().getWindow());
+            newWindow.initModality(Modality.WINDOW_MODAL);
+
+            newWindow.show();
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR, "Ocurrio un error al abrir la ventana");
+            alert.setTitle("Error - Menu Principal");
+            alert.showAndWait();
+        }
+
+    }
 }
