@@ -1,4 +1,4 @@
-package ADT;
+package adt;
 
 import java.awt.image.BufferedImage;
 import util.ImageResizer;
