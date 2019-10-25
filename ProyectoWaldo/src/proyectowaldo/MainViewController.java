@@ -19,6 +19,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import util.RandomGenerator;
 
 /**
  *
@@ -49,8 +50,8 @@ public class MainViewController implements Initializable {
             }
         });
         
-        /*
-        Image image = new Image("file:///C:\\Users\\carlo\\Pictures\\test sprites\\attack.png", 100, 200, false, false);
+        
+        Image image = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//waldito_wide.png", 200, 100, true, true);
         ImageView waldo1 = new ImageView(image);
         ImageView waldo2 = new ImageView(image);
         ImageView waldo3 = new ImageView(image);
@@ -83,10 +84,16 @@ public class MainViewController implements Initializable {
         });
         
         gamePane.getChildren().addAll(waldo1, waldo2, waldo3);  
-        waldo2.setTranslateX(100);
-        waldo3.setTranslateX(200);
-        waldo3.setTranslateY(300);
-        */
+        
+        waldo1.setTranslateX(-100);
+        waldo1.setTranslateY(-250);
+        //waldo1.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getWidth()));
+        //waldo1.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));
+        //waldo2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getWidth()));
+        //waldo2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));
+        //waldo3.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getWidth()));
+        //waldo3.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));        
+        
     }    
     
 }

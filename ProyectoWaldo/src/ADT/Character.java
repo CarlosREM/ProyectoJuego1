@@ -1,7 +1,6 @@
 package adt;
 
-import java.awt.image.BufferedImage;
-import util.ImageResizer;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -9,14 +8,15 @@ import util.ImageResizer;
  */
 public class Character {
     
-    private BufferedImage image;
+    private Image image;
+    private String nombre;
     private final int height, width;
 
-    public BufferedImage getImage() {
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(BufferedImage image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 
@@ -28,10 +28,18 @@ public class Character {
         return width;
     }
 
-    public Character(BufferedImage image, int height, int width) {
-        this.image = ImageResizer.resize(image, height, width);
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
+    public Character(Image image, String nombre, int height, int width) {
+        this.image = image;
+        this.nombre = nombre;
         this.height = height;
         this.width = width;
     }
-    
 }
