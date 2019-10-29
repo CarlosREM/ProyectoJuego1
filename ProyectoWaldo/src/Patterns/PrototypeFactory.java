@@ -37,19 +37,19 @@ public class PrototypeFactory {
     }
     
     public static IPrototype getScenarioPrototype(String prototypeName){
-        return characterPrototypes.get(prototypeName).clone();
+        return scenarioPrototypes.get(prototypeName).clone();
     }
     
     public static void addScenarioPrototype(String prototypeName, IPrototype prototype){
-        characterPrototypes.put(prototypeName, prototype);
+        scenarioPrototypes.put(prototypeName, prototype);
     }
     
     public static void removeScenarioPrototype(String prototypeName){
-        characterPrototypes.remove(prototypeName);
+        scenarioPrototypes.remove(prototypeName);
     }
     
     public static void removeAllScenarios(){
-        characterPrototypes.clear();
+        scenarioPrototypes.clear();
     }
     
     public static Set<String> getScenarioKeys() {

@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
  * @author Carlos Esquivel
  * @author Fabricio Ceciliano
  */
-public class Character implements IPrototype {
+public class Character implements IPrototype<Character> {
     
     private Image image;
     private final int height, width;
@@ -64,15 +64,17 @@ public class Character implements IPrototype {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     @Override
-    public IPrototype clone() {
+    public Character clone() {
         return new Character(this.getImage(), this.getHeight(), this.getWidth(), this.getNombre(), this.isIsWaldo(),this.isUseOnGeneration());
     }
 
     @Override
-    public IPrototype deepClone() {
-        return clone();
+    public Character deepClone() {
+        return this.clone();
     }
+    
+   
 
 }
