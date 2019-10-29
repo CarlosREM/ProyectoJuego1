@@ -11,8 +11,19 @@ import javafx.scene.image.Image;
 public class Character implements IPrototype {
     
     private Image image;
-    private String nombre;
     private final int height, width;
+    private String nombre;
+    private boolean isWaldo;
+    private boolean useOnGeneration;
+
+    public Character(Image image, int height, int width, String nombre, boolean isWaldo, boolean useOnGeneration) {
+        this.image = image;
+        this.height = height;
+        this.width = width;
+        this.nombre = nombre;
+        this.isWaldo = isWaldo;
+        this.useOnGeneration = useOnGeneration;
+    }
 
     public Image getImage() {
         return image;
@@ -30,6 +41,22 @@ public class Character implements IPrototype {
         return width;
     }
 
+    public boolean isIsWaldo() {
+        return isWaldo;
+    }
+
+    public void setIsWaldo(boolean isWaldo) {
+        this.isWaldo = isWaldo;
+    }
+
+    public boolean isUseOnGeneration() {
+        return useOnGeneration;
+    }
+
+    public void setUseOnGeneration(boolean useOnGeneration) {
+        this.useOnGeneration = useOnGeneration;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -38,20 +65,14 @@ public class Character implements IPrototype {
         this.nombre = nombre;
     }
     
-    public Character(Image image, String nombre, int height, int width) {
-        this.image = image;
-        this.nombre = nombre;
-        this.height = height;
-        this.width = width;
-    }
-    
     @Override
     public IPrototype clone() {
-        return new Character(this.getImage(), this.getNombre(), this.getHeight(), this.getWidth());
+        return new Character(this.getImage(), this.getHeight(), this.getWidth(), this.getNombre(), this.isIsWaldo(),this.isUseOnGeneration());
     }
 
     @Override
     public IPrototype deepClone() {
         return clone();
     }
+
 }
