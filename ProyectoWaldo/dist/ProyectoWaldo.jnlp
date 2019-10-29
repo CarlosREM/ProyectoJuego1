@@ -2,17 +2,15 @@
 <jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="ProyectoWaldo.jnlp">
   <information>
     <title>ProyectoWaldo</title>
-    <vendor>Gï¿½mez Montero</vendor>
+    <vendor>Gómez Montero</vendor>
     <description>null</description>
     <offline-allowed/>
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ProyectoWaldo.jar" size="73030" download="eager" />
+    <jar href="ProyectoWaldo.jar" size="2092973" download="eager" />
+    <jar href="lib\gson-2.8.6.jar" size="240255" download="eager" />
   </resources>
-  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ProyectoWaldo" >
-    <param name="requiredFXVersion" value="8.0+"/>
-  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="proyectowaldo.Main"  name="ProyectoWaldo" />
   <update check="always"/>
 </jnlp>

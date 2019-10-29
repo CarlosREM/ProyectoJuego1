@@ -1,12 +1,14 @@
 package adt;
 
+import Patterns.IPrototype;
 import javafx.scene.image.Image;
 
 /**
  *
- * @author carlo
+ * @author Carlos Esquivel
+ * @author Fabricio Ceciliano
  */
-public class Character {
+public class Character implements IPrototype {
     
     private Image image;
     private String nombre;
@@ -41,5 +43,15 @@ public class Character {
         this.nombre = nombre;
         this.height = height;
         this.width = width;
+    }
+    
+    @Override
+    public IPrototype clone() {
+        return new Character(this.getImage(), this.getNombre(), this.getHeight(), this.getWidth());
+    }
+
+    @Override
+    public IPrototype deepClone() {
+        return clone();
     }
 }

@@ -26,7 +26,7 @@ import javax.imageio.ImageIO;
  *
  * @author Carlos Esquivel
  */
-public class PnItemController implements Initializable {
+public abstract class PnItemController implements Initializable {
     
     @FXML protected AnchorPane pnMain;
     
