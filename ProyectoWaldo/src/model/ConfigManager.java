@@ -1,6 +1,6 @@
 package model;
 
-import Patterns.PrototypeFactory;
+import adt.CharacterPrototypeFactory;
 import com.google.gson.reflect.TypeToken;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import util.JsonManager;
 import adt.Character;
 import adt.Scenario;
+import adt.ScenarioPrototypeFactory;
 import java.io.IOException;
 
 /**
@@ -29,14 +30,14 @@ public class ConfigManager {
         Type formListType = new TypeToken<ArrayList<Character>>() {}.getType();
         ArrayList<Character> characterArray = (ArrayList<Character>) JsonManager.parseJsonFile(JSON_PERSONAJES, formListType);
         for (Character character : characterArray)
-            PrototypeFactory.addCharacterPrototype(character.getNombre(), character);
+            CharacterPrototypeFactory.addPrototype(character.getNombre(), character);
     }
     
     private static void loadScenarios() throws FileNotFoundException {
         Type formListType = new TypeToken<ArrayList<Scenario>>() {}.getType();
         ArrayList<Scenario> scenarioArray = (ArrayList<Scenario>) JsonManager.parseJsonFile(JSON_ESCENARIOS, formListType);
         for (Scenario scenario : scenarioArray)
-            PrototypeFactory.addScenarioPrototype(scenario.getNombre(), scenario);
+            ScenarioPrototypeFactory.addPrototype(scenario.getNombre(), scenario);
     }
     
     
@@ -47,15 +48,15 @@ public class ConfigManager {
     
     private static ArrayList<Character> getCharacterArray() {
         ArrayList<Character> characterArray = new ArrayList<>();
-        for (String key : PrototypeFactory.getCharacterKeys())
-            characterArray.add((Character) PrototypeFactory.getCharacterPrototype(key));
+        for (String key : CharacterPrototypeFactory.getKeys())
+            characterArray.add((Character) CharacterPrototypeFactory.getPrototype(key));
         return characterArray;
     }
     
     private static ArrayList<Scenario> getScenarioArray() {
         ArrayList<Scenario> scenarioArray = new ArrayList<>();
-        for (String key : PrototypeFactory.getScenarioKeys())
-            scenarioArray.add((Scenario) PrototypeFactory.getScenarioPrototype(key));
+        for (String key : CharacterPrototypeFactory.getKeys())
+            scenarioArray.add((Scenario) CharacterPrototypeFactory.getPrototype(key));
         return scenarioArray;    
     }
 }

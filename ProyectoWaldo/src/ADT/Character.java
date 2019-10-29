@@ -72,6 +72,7 @@ public class Character implements IPrototype<Character> {
 
     @Override
     public Character deepClone() {
+        
         return this.clone();
     }
     

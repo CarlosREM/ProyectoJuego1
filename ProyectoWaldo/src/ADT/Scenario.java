@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
  * @author Carlos Esquivel
  * @author Fabricio Ceciliano
  */
-public class Scenario implements IPrototype {
+public class Scenario implements IPrototype<Scenario> {
     
     private String nombre;
     private Image image;
@@ -34,15 +34,13 @@ public class Scenario implements IPrototype {
         this.image = image;
     }
 
-    public Scenario() {}
-
     @Override
-    public IPrototype clone() {
-    return this;
+    public Scenario clone() {
+        return new Scenario(this.getNombre(), this.getImage());
     }
 
     @Override
-    public IPrototype deepClone() {
-        return clone();
+    public Scenario deepClone() {
+        return this.clone();
     }
 }

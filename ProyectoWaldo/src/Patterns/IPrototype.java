@@ -8,8 +8,9 @@ package Patterns;
 /**
  *
  * @author Fabricio Ceciliano
+ * @param <T>
  */
-public interface IPrototype <T extends IPrototype> extends Cloneable{
+public interface IPrototype <T extends IPrototype> extends Cloneable {
     public T clone();
     public T deepClone();
 }

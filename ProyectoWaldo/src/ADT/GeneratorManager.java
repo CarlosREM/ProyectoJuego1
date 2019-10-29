@@ -1,7 +1,9 @@
 package ADT;
 
-import Patterns.PrototypeFactory;
+import adt.Character;
+import adt.CharacterPrototypeFactory;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -12,10 +14,11 @@ import java.util.ArrayList;
  */
 
 public class GeneratorManager {
-    public static ArrayList<Character> generateCharacter(String characterKey, int amount){
-        ArrayList<Character> charactersList = new ArrayList<>();
+    public static List<Character> generateCharacter(String characterKey, int amount){
+        List<Character> charactersList = new ArrayList<>();
+        Character character;
         for(int i=0; i<amount; i++){
-            Character character = (Character)PrototypeFactory.getCharacterPrototype(characterKey);
+            character = (Character) CharacterPrototypeFactory.getPrototype(characterKey);
             charactersList.add(character);
         }
         return charactersList;
