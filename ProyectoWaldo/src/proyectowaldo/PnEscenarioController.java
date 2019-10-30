@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectowaldo;
 
+import adt.Scenario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -26,6 +22,19 @@ public class PnEscenarioController extends PnItemController {
         
     @FXML
     private void btnCambiarImagenAction(ActionEvent event) {
-        cambiarImagen(RESOURCES_DIR);
+        cambiarImagen(RESOURCES_DIR, "Escenarios");
+    }
+    
+    public Scenario getEscenario() {
+        String nombre = txtNombre.getText();
+        return new Scenario(nombre, imgPath);
+    }
+    
+    @Override
+    public boolean checkEmpty() {
+        boolean nameEmpty = txtNombre.getText().isEmpty(),
+                imgEmpty = imgPath.isEmpty();
+
+        return nameEmpty && imgEmpty;
     }
 }

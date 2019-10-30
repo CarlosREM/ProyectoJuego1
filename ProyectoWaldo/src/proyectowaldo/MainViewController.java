@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectowaldo;
 
 import adt.Scenario;
 import adt.ScenarioPrototypeFactory;
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -56,6 +52,7 @@ public class MainViewController implements Initializable {
     private static final int characterHeight = 200;
     
     private boolean SelectedScenario = false;
+    private final BackgroundSize bgSize = new BackgroundSize(100, 100, false, false, true, true);
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -92,10 +89,11 @@ public class MainViewController implements Initializable {
         
         String key = cmBxEscenarios.getSelectionModel().getSelectedItem();
         Scenario scenario = (Scenario) ScenarioPrototypeFactory.getPrototype(key);
-        Image img = new Image(MainViewController.class.getResource(scenario.getImage()).toExternalForm());
+        File file = new File(scenario.getImage());
+        Image img = new Image(file.toURI().toString());
         gamePane.setBackground(new Background(new BackgroundImage(img,
                                               BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                                              BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+                                              BackgroundPosition.DEFAULT, bgSize)));
     }
 
     @FXML

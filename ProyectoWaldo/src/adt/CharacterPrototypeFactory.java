@@ -24,7 +24,7 @@ public class CharacterPrototypeFactory {
         prototypes.remove(prototypeName);
     }
     
-    public static void removeAlls(){
+    public static void removeAll(){
         prototypes.clear();
     }
     

@@ -35,24 +35,27 @@ public abstract class PnItemController implements Initializable {
     @FXML protected Button btnCambiarImagen;
     @FXML protected Button btnEliminar;
         
+    protected String imgPath;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
     
         
-    protected void cambiarImagen(String ResourcesDir) {
+    protected BufferedImage cambiarImagen(String ResourcesDir, String caller) {
+        BufferedImage bimg = null;
         if (!txtNombre.getText().isEmpty()) {
             try {
-                final FileChooser fileChooser = getImageFileChooser(ResourcesDir , "Escenarios");
+                final FileChooser fileChooser = getImageFileChooser(ResourcesDir , caller);
                 File file = fileChooser.showOpenDialog((Stage) pnMain.getScene().getWindow());
                 if (file != null) {
                     Image newImage = new Image(file.toURI().toString());
-                    BufferedImage bimg = new BufferedImage((int) newImage.getWidth(),
-                                                           (int) newImage.getHeight(),
-                                                            BufferedImage.TYPE_INT_ARGB);
+                    bimg = new BufferedImage((int) newImage.getWidth(),
+                                             (int) newImage.getHeight(),
+                                                   BufferedImage.TYPE_INT_ARGB);
                     
-                    saveImageResource(txtNombre.getText(),
-                                      SwingFXUtils.fromFXImage(newImage, bimg),
-                                      ResourcesDir);
+                    imgPath = saveImageResource(txtNombre.getText(),
+                                                SwingFXUtils.fromFXImage(newImage, bimg),
+                                                ResourcesDir);
 
                     imgViewer.setImage(newImage);
                 }
@@ -67,6 +70,7 @@ public abstract class PnItemController implements Initializable {
             Alert alert = new Alert(AlertType.WARNING, "Debe llenar el espacio \"Nombre\" para poder cargar imagenes.");
             alert.showAndWait();
         }
+        return bimg;
     }
     
     protected FileChooser getImageFileChooser(String ResourceDir, String caller) {
@@ -79,8 +83,10 @@ public abstract class PnItemController implements Initializable {
         return fileChooser;
     }
     
-    protected void saveImageResource(String imgName, BufferedImage newImage, String ResourceDir) throws IOException {
-        ImageIO.write(newImage, "png", new File(ResourceDir + "/" + imgName + ".png"));
+    protected String saveImageResource(String imgName, BufferedImage newImage, String ResourceDir) throws IOException {
+        String path = ResourceDir + "/" + imgName + ".png";
+        ImageIO.write(newImage, "png", new File(path));
+        return path;
     }
 
     
@@ -94,5 +100,18 @@ public abstract class PnItemController implements Initializable {
             FlowPane pnParent = (FlowPane) pnMain.getParent();
             pnParent.getChildren().remove(pnMain);
         }
+    }
+    
+    public abstract boolean checkEmpty();
+    
+    public void setNombre(String nombre) {
+        txtNombre.setText(nombre);
+    } 
+    
+    public void setImage(String path) {
+        imgPath = path;
+        File file = new File(path);
+        Image img = new Image(file.toURI().toString());
+        imgViewer.setImage(img);
     }
 }

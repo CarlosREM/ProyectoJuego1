@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package proyectowaldo;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +12,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+
+import adt.Character;
+import adt.CharacterPrototypeFactory;
+import adt.Scenario;
+import adt.ScenarioPrototypeFactory;
+import javafx.scene.control.Alert;
+import model.ConfigManager;
 
 /**
  *
@@ -37,9 +40,45 @@ public class ConfigViewController implements Initializable {
     
     @FXML private Button btnCancelar;
     @FXML private Button btnGuardar;
+    
+    
+    private ArrayList<PnPersonajeController> personajeControllerArray = new ArrayList<>();
+    private ArrayList<PnEscenarioController> escenarioControllerArray = new ArrayList<>();
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+        loadPersonajes();
+        loadEscenarios();
+    }
+    private void loadPersonajes() {
+        PnPersonajeController newController;
+        Character newCharacter;
+        for (String key : CharacterPrototypeFactory.getKeys()) {
+            newController = addPersonaje(false);
+            personajeControllerArray.add(newController);
+            newCharacter = (Character) CharacterPrototypeFactory.getPrototype(key);
+            
+            newController.setNombre(newCharacter.getNombre());
+            newController.setImage(newCharacter.getImage());
+            newController.setWidth(newCharacter.getWidth());
+            newController.setHeight(newCharacter.getHeight());
+            newController.setUsar(newCharacter.isUseOnGeneration());
+            newController.setWaldo(newCharacter.isIsWaldo());
+        }
+    }
+    private void loadEscenarios() {
+        PnEscenarioController newController;
+        Scenario newCharacter;
+        for (String key : ScenarioPrototypeFactory.getKeys()) {
+            newController = addEscenario(false);
+            escenarioControllerArray.add(newController);
+            newCharacter = (Scenario) CharacterPrototypeFactory.getPrototype(key);
+            
+            newController.setNombre(newCharacter.getNombre());
+            newController.setImage(newCharacter.getImage());
+        }
+    }
+    
     
     @FXML
     private void switchToPersonajes(ActionEvent event) {
@@ -49,16 +88,27 @@ public class ConfigViewController implements Initializable {
         }
     }
     @FXML
-    private void addPersonaje(ActionEvent event) {
+    private void btnAddPersonajeAction(ActionEvent event) {
+        PnPersonajeController newController = addPersonaje(true);
+        if (newController != null)
+            personajeControllerArray.add(newController);
+    }
+    
+    private PnPersonajeController addPersonaje(boolean switchScreen) {
         AnchorPane pnNewPersonaje;
+        PnPersonajeController newController;
         try {
-            pnNewPersonaje = (AnchorPane) FXMLLoader.load(getClass().getResource("PnPersonaje.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PnPersonaje.fxml"));
+            pnNewPersonaje = (AnchorPane) loader.load();
             pnPersonajes.getChildren().add(pnNewPersonaje);
-            switchToPersonajes(event);
+            if (switchScreen) switchToPersonajes(null);
+            newController = loader.getController();
         }
         catch(Exception ex) {
-            System.out.println("fuck");
+            ex.printStackTrace();
+            newController = null;
         }
+        return newController;
     }
     
     @FXML
@@ -69,28 +119,67 @@ public class ConfigViewController implements Initializable {
         }
     }
     @FXML
-    private void addEscenario(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
+    private void btnAddEscenarioAction(ActionEvent event) {
+        PnEscenarioController newController = addEscenario(true);
+        if (newController != null)
+            escenarioControllerArray.add(newController);
+    }
+
+    private PnEscenarioController addEscenario(boolean switchScreen) {
         AnchorPane pnNewEscenario;
+        PnEscenarioController newController;
         try {
-            pnNewEscenario = (AnchorPane) FXMLLoader.load(getClass().getResource("PnEscenario.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PnEscenario.fxml"));
+            pnNewEscenario = (AnchorPane) loader.load();
             pnEscenarios.getChildren().add(pnNewEscenario);
-            
-            switchToEscenarios(event);
+            if (switchScreen) switchToEscenarios(null);
+            newController = loader.getController();
         }
         catch(Exception ex) {
-            System.out.println("fuck");
+            ex.printStackTrace();
+            newController = null;
         }
+        return newController;
     }
     
     
     @FXML
     private void btnGuardarAction(ActionEvent event) {
-        
-        //guardar el mierdero que el mae haya hecho
-        
-        Stage stage = (Stage) btnGuardar.getScene().getWindow();
-        stage.close();
+        try {
+            guardarPersonajes();
+            guardarEscenarios();
+            ConfigManager.saveConfig();
+
+            Stage stage = (Stage) btnGuardar.getScene().getWindow();
+            stage.close();
+        }
+        catch(InstantiationException ex) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "TODOS los campos de TODOS los objetos insertados deben ser llenados");
+            alert.setTitle("Informacion incompleta - Administrar Recursos");
+            alert.showAndWait();
+        }
+    }
+    
+    private void guardarPersonajes() throws InstantiationException {
+        CharacterPrototypeFactory.removeAll();
+        Character personaje;
+        for (PnPersonajeController controller :personajeControllerArray) {
+            if (controller.checkEmpty())
+                throw new InstantiationException();
+            personaje = controller.getPersonaje();
+            CharacterPrototypeFactory.addPrototype(personaje.getNombre(), personaje);
+        }
+    }
+    
+    private void guardarEscenarios() throws InstantiationException {
+        ScenarioPrototypeFactory.removeAll();
+        Scenario escenario;
+        for (PnEscenarioController controller : escenarioControllerArray) {
+            if (controller.checkEmpty())
+                throw new InstantiationException();
+            escenario = controller.getEscenario();
+            ScenarioPrototypeFactory.addPrototype(escenario.getNombre(), escenario);
+        }
     }
     
     @FXML

@@ -1,4 +1,4 @@
-package ADT;
+package adt;
 
 import adt.Character;
 import adt.CharacterPrototypeFactory;
