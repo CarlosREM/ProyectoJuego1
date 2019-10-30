@@ -5,11 +5,16 @@
  */
 package proyectowaldo;
 
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import model.ConfigManager;
 
 /**
  *
@@ -31,7 +36,13 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+        try {
+            ConfigManager.loadConfig();
+            launch(args);
+        }
+        catch (Exception ex) {
+            System.out.println("<ERROR> : Al cargar configuraciones");
+        }
     }
     
 }

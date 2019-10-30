@@ -30,7 +30,7 @@
                </font>
             </Label>
             <Button fx:id="btnConfig" layoutX="32.0" layoutY="246.0" mnemonicParsing="false" onAction="#openConfigWindow" style="-fx-border-color: red; -fx-border-width: 2;" text="Administrar recursos..." AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
-            <Button layoutX="52.0" layoutY="790.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="146.0" style="-fx-border-color: blue; -fx-border-width: 2;" text="GENERAR" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0">
+            <Button fx:id="btnGenerar" layoutX="52.0" layoutY="790.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="146.0" style="-fx-border-color: blue; -fx-border-width: 2;" text="GENERAR" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="52.0" AnchorPane.rightAnchor="52.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -38,7 +38,7 @@
             <Label alignment="CENTER" layoutX="32.0" layoutY="356.0" text="Cant. Personajes:" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
             <TextField fx:id="txtCantPersonajes" layoutX="32.0" layoutY="386.0" style="-fx-border-color: red; -fx-border-width: 2;" text="0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
             <Label alignment="CENTER" layoutX="32.0" layoutY="462.0" text="Escenario:" textAlignment="CENTER" underline="true" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
-            <ComboBox layoutX="32.0" layoutY="499.0" prefHeight="31.0" prefWidth="186.0" style="-fx-border-color: red; -fx-border-width: 2;" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
+            <ComboBox fx:id="cmBxEscenarios" layoutX="32.0" layoutY="499.0" onAction="#onCmbxEscenariosItemSelect" prefHeight="31.0" prefWidth="186.0" style="-fx-border-color: red; -fx-border-width: 2;" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="32.0" />
             <Separator layoutX="16.0" layoutY="307.0" prefWidth="200.0" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="16.0" />
             <Separator layoutX="25.0" layoutY="139.0" prefWidth="200.0" style="-fx-background-color: red;" />
          </children>

@@ -1,7 +1,6 @@
 package adt;
 
 import Patterns.IPrototype;
-import javafx.scene.image.Image;
 
 /**
  *
@@ -10,13 +9,13 @@ import javafx.scene.image.Image;
  */
 public class Character implements IPrototype<Character> {
     
-    private Image image;
+    private String image;
     private final int height, width;
     private String nombre;
     private boolean isWaldo;
     private boolean useOnGeneration;
 
-    public Character(Image image, int height, int width, String nombre, boolean isWaldo, boolean useOnGeneration) {
+    public Character(String image, int height, int width, String nombre, boolean isWaldo, boolean useOnGeneration) {
         this.image = image;
         this.height = height;
         this.width = width;
@@ -25,11 +24,11 @@ public class Character implements IPrototype<Character> {
         this.useOnGeneration = useOnGeneration;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

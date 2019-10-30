@@ -5,15 +5,16 @@
  */
 package proyectowaldo;
 
-import java.io.IOException;
+import adt.Scenario;
+import adt.ScenarioPrototypeFactory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,10 +22,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,15 +40,13 @@ import javafx.stage.Stage;
 public class MainViewController implements Initializable {
        
     @FXML private StackPane gamePane;
-    @FXML private Pane configPane;
     
     @FXML private Button btnConfig;
     @FXML private TextField txtCantPersonajes;
+    @FXML private ComboBox<String> cmBxEscenarios;
+    @FXML private Button btnGenerar;
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-    }
+    private boolean SelectedScenario = false;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -59,58 +61,33 @@ public class MainViewController implements Initializable {
                 }
             }
         });
+        
+        loadEscenarios();
     }
     
-    private void setupListeners() {
+    private void loadEscenarios() {
+        gamePane.setBackground(null);
+
+        SelectedScenario = false;
         
+        ObservableList<String> data = cmBxEscenarios.getItems();
+        data.clear();
+        for (String key : ScenarioPrototypeFactory.getKeys())
+            data.add(key);
     }
-        /*
-        Image image = new Image("file:///C:\\Users\\carlo\\Pictures\\test sprites\\attack.png", 100, 200, false, false);
-        ImageView waldo1 = new ImageView(image);
-        ImageView waldo2 = new ImageView(image);
-        ImageView waldo3 = new ImageView(image);
-        waldo1.setPickOnBounds(false);
-        waldo2.setPickOnBounds(false);
-        waldo3.setPickOnBounds(false);
-        waldo1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("waldo1");
-                event.consume();
-            }
-        });
-        waldo2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("waldo2");
-                event.consume();
-            }
-        });
-        waldo3.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("waldo3");
-                event.consume();
-            }
-        });
-        
-        gamePane.getChildren().addAll(waldo1, waldo2, waldo3);  
-        
-        waldo1.setTranslateX(-100);
-        waldo1.setTranslateY(-250);
-        //waldo1.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getWidth()));
-        //waldo1.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));
-        //waldo2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getWidth()));
-        //waldo2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));
-        //waldo3.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getWidth()));
-        //waldo3.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(0, (int) gamePane.getHeight()));        
-        
-    }    
-    */
     
+    @FXML
+    private void onCmbxEscenariosItemSelect(ActionEvent event) {
+        SelectedScenario = true;
+        
+        String key = cmBxEscenarios.getSelectionModel().getSelectedItem();
+        Scenario scenario = (Scenario) ScenarioPrototypeFactory.getPrototype(key);
+        Image img = new Image(MainViewController.class.getResource(scenario.getImage()).toExternalForm());
+        gamePane.setBackground(new Background(new BackgroundImage(img,
+                                              BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                                              BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+    }
+
     @FXML
     private void openConfigWindow(ActionEvent event) {
         Parent root;
@@ -123,7 +100,8 @@ public class MainViewController implements Initializable {
             newWindow.initOwner(btnConfig.getScene().getWindow());
             newWindow.initModality(Modality.WINDOW_MODAL);
 
-            newWindow.show();
+            newWindow.showAndWait();
+            loadEscenarios();
         }
         catch (Exception ex) {
             ex.printStackTrace();

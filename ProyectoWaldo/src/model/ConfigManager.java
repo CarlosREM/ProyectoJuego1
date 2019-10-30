@@ -1,14 +1,16 @@
 package model;
 
-import adt.CharacterPrototypeFactory;
 import com.google.gson.reflect.TypeToken;
 import java.io.FileNotFoundException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+
 import util.JsonManager;
 import adt.Character;
 import adt.Scenario;
+import adt.CharacterPrototypeFactory;
 import adt.ScenarioPrototypeFactory;
+
 import java.io.IOException;
 
 /**
@@ -21,23 +23,27 @@ public class ConfigManager {
     private static final String JSON_ESCENARIOS = "./src/config/escenarios.json";
 
     
-    public static void loadConfig() throws FileNotFoundException {
+    public static void loadConfig() throws Exception {
         loadCharacters();
         loadScenarios();
     }
     
-    private static void loadCharacters() throws FileNotFoundException {
+    private static void loadCharacters() throws Exception {
         Type formListType = new TypeToken<ArrayList<Character>>() {}.getType();
         ArrayList<Character> characterArray = (ArrayList<Character>) JsonManager.parseJsonFile(JSON_PERSONAJES, formListType);
-        for (Character character : characterArray)
-            CharacterPrototypeFactory.addPrototype(character.getNombre(), character);
+        if (characterArray != null) {
+            for (Character character : characterArray)
+                CharacterPrototypeFactory.addPrototype(character.getNombre(), character);
+        }
     }
     
-    private static void loadScenarios() throws FileNotFoundException {
+    private static void loadScenarios() throws Exception {
         Type formListType = new TypeToken<ArrayList<Scenario>>() {}.getType();
         ArrayList<Scenario> scenarioArray = (ArrayList<Scenario>) JsonManager.parseJsonFile(JSON_ESCENARIOS, formListType);
-        for (Scenario scenario : scenarioArray)
-            ScenarioPrototypeFactory.addPrototype(scenario.getNombre(), scenario);
+        if (scenarioArray != null) {
+            for (Scenario scenario : scenarioArray)
+                ScenarioPrototypeFactory.addPrototype(scenario.getNombre(), scenario);
+        }
     }
     
     

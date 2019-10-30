@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
 public class Scenario implements IPrototype<Scenario> {
     
     private String nombre;
-    private Image image;
+    private String image;
 
     public String getNombre() {
         return nombre;
@@ -21,15 +21,15 @@ public class Scenario implements IPrototype<Scenario> {
         this.nombre = nombre;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-    public Scenario(String nombre, Image image) {
+    public Scenario(String nombre, String image) {
         this.nombre = nombre;
         this.image = image;
     }
