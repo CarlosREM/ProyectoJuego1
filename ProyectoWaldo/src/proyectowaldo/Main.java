@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.ConfigManager;
+import util.RandomGenerator;
 
 /**
  *
@@ -44,5 +45,5 @@ public class Main extends Application {
             System.out.println("<ERROR> : Al cargar configuraciones");
         }
     }
-    
+       
 }
