@@ -1,5 +1,6 @@
 package proyectowaldo;
 
+import adt.GeneratorManager;
 import adt.Scenario;
 import adt.ScenarioPrototypeFactory;
 import java.io.File;
@@ -68,8 +69,8 @@ public class MainViewController implements Initializable {
             }
         });
         
-        loadBichos();
-        //loadEscenarios();
+        //loadBichos();
+        loadEscenarios();
     }
     
     private void loadEscenarios() {
@@ -210,5 +211,12 @@ public class MainViewController implements Initializable {
         wizard2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
         wizard2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
         
+    }
+    
+    @FXML
+    private void btnGenerarAction(ActionEvent event) {
+        GeneratorManager gm = new GeneratorManager(0 - paneWidth/2, 0 + paneWidth/2,
+                                                   0 - paneHeight/2, 0 + paneHeight/2);
+        gm.loadCharacters(gamePane);
     }
 }

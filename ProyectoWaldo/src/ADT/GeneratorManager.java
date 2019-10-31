@@ -2,6 +2,7 @@ package adt;
 
 import adt.Character;
 import adt.CharacterPrototypeFactory;
+import java.io.File;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -33,19 +34,29 @@ public class GeneratorManager {
         this.maxY = maxY;
     }
         
-    public void loadBasicCharacters(StackPane gamePane){
-        for (String key : CharacterPrototypeFactory.getKeys()){
+    public void loadCharacters(StackPane gamePane) {
+        GameManager.getInstance().setCurrentFoundCharacters(0);
+        loadBasicCharacters(gamePane);
+        //ahi van los otros bichos
+    }
+    
+    public void loadBasicCharacters(StackPane gamePane) {
+        int counter = 0;
+        for (String key : CharacterPrototypeFactory.getKeys()) {
             Character character = (Character)CharacterPrototypeFactory.getPrototype(key);
-            if (!character.isUseOnGeneration())
+            if (!character.isIsWaldo())
                 continue;
-            Image characterImage = new Image(character.getImage(),character.getWidth(),character.getHeight(),true,true);
+            counter++;
+            File file = new File(character.getImage());
+            Image characterImage = new Image(file.toURI().toString(), character.getWidth(), character.getHeight(), true,true);
             ImageView characterImageView = new ImageView(characterImage);
             characterImageView.setPickOnBounds(false);
             characterImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
                     showMessage(AlertType.INFORMATION, character.getNombre() + " encontrado.", "Personaje encontrado");
-                                        
+                    GameManager.getInstance().setCurrentFoundCharacters(
+                        GameManager.getInstance().getCurrentFoundCharacters() + 1);
                     if(verifyWinnerCondition()){
                         showMessage(AlertType.INFORMATION, "Ha encontrado todos los personajes. Felicidades!", "Ganador - Juego terminado");
                     }
@@ -60,9 +71,10 @@ public class GeneratorManager {
             characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
             characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
         }
+        GameManager.getInstance().setMaxCharacters(counter);
     }
     
-    public void loadCharacters(int amount){
+    public void loadExtraCharacters(int amount){
         
     }
     

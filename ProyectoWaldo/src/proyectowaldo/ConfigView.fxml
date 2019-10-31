@@ -10,7 +10,7 @@
 
 <AnchorPane id="mainPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="proyectowaldo.ConfigViewController">
    <children>
-      <AnchorPane fx:id="pnOpciones" prefHeight="600.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane prefHeight="600.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Button fx:id="btnPersonajes" layoutY="37.0" mnemonicParsing="false" onAction="#switchToPersonajes" text="Personajes" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" />
             <Button fx:id="btnEscenarios" layoutY="120.0" mnemonicParsing="false" onAction="#switchToEscenarios" text="Escenarios" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="1.0" />
@@ -22,7 +22,7 @@
          </children>
       </AnchorPane>
       <Separator layoutX="250.0" orientation="VERTICAL" prefHeight="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <ScrollPane fx:id="scrollPersonajes" layoutX="250.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+  <ScrollPane fx:id="scrollPersonajes" layoutX="250.0" prefHeight="600.0" prefWidth="750.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <FlowPane fx:id="pnPersonajes" prefWidth="731.0" />
          </content>

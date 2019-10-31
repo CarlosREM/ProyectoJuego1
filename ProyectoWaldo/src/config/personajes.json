@@ -1,0 +1,50 @@
+[
+  {
+    "image": "./src/resources/personajes/Wenda.png",
+    "height": 300,
+    "width": 150,
+    "nombre": "Wenda",
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Odlaw.png",
+    "height": 427,
+    "width": 252,
+    "nombre": "Odlaw",
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Woof.png",
+    "height": 239,
+    "width": 344,
+    "nombre": "Woof",
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Megaman.png",
+    "height": 500,
+    "width": 500,
+    "nombre": "Megaman",
+    "isWaldo": false,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Waldo.png",
+    "height": 300,
+    "width": 150,
+    "nombre": "Waldo",
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Wizard.png",
+    "height": 285,
+    "width": 180,
+    "nombre": "Wizard",
+    "isWaldo": true,
+    "useOnGeneration": true
+  }
+]

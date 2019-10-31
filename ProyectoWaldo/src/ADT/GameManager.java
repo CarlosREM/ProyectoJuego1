@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ADT;
+package adt;
 
 /**
  *
  * @author Fabricio Ceciliano
  */
 public class GameManager {
-    private static int currentFoundCharacters = 0;
-    private static int maxCharacters = 0;
+    private int currentFoundCharacters = 0;
+    private int maxCharacters = 0;
     
     private static GameManager instance = null;
     
@@ -29,7 +29,7 @@ public class GameManager {
     }
 
     public void setCurrentFoundCharacters(int currentFoundCharacters) {
-        GameManager.currentFoundCharacters = currentFoundCharacters;
+        this.currentFoundCharacters = currentFoundCharacters;
     }
 
     public int getMaxCharacters() {
@@ -37,6 +37,6 @@ public class GameManager {
     }
 
     public void setMaxCharacters(int maxCharacters) {
-        GameManager.maxCharacters = maxCharacters;
+        this.maxCharacters = maxCharacters;
     }    
 }

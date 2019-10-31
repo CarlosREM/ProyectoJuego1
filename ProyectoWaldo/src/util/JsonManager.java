@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 
 /**
  *
@@ -21,15 +19,10 @@ public class JsonManager {
         return GSON.fromJson(new FileReader(dir), objClass);
     }
     
-    public static Object parseJsonFile(String dir, Type classType) throws FileNotFoundException {
-        return GSON.fromJson(new FileReader(dir), classType);
-    }
-    
     public static void saveJsonFile(Object obj, String dir) throws IOException {
-        GSON.toJson(obj, new FileWriter(dir));
-    }
-    
-    public static void saveJsonFile(ArrayList<?> list, String dir) throws IOException {
-        GSON.toJson(list, new FileWriter(dir));
+        try (FileWriter fw = new FileWriter(dir)) {
+            GSON.toJson(obj, fw);
+            fw.flush();
+        }
     }
 }

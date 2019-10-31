@@ -26,7 +26,6 @@ import model.ConfigManager;
  */
 public class ConfigViewController implements Initializable {
        
-    @FXML private AnchorPane pnOpciones;
     @FXML private ScrollPane scrollPersonajes;
     @FXML private FlowPane pnPersonajes;
     @FXML private ScrollPane scrollEscenarios;
@@ -68,14 +67,14 @@ public class ConfigViewController implements Initializable {
     }
     private void loadEscenarios() {
         PnEscenarioController newController;
-        Scenario newCharacter;
+        Scenario newScenario;
         for (String key : ScenarioPrototypeFactory.getKeys()) {
             newController = addEscenario(false);
             escenarioControllerArray.add(newController);
-            newCharacter = (Scenario) CharacterPrototypeFactory.getPrototype(key);
+            newScenario = (Scenario) ScenarioPrototypeFactory.getPrototype(key);
             
-            newController.setNombre(newCharacter.getNombre());
-            newController.setImage(newCharacter.getImage());
+            newController.setNombre(newScenario.getNombre());
+            newController.setImage(newScenario.getImage());
         }
     }
     
