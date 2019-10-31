@@ -35,7 +35,7 @@ public abstract class PnItemController implements Initializable {
     @FXML protected Button btnCambiarImagen;
     @FXML protected Button btnEliminar;
         
-    protected String imgPath;
+    protected String imgPath = "";
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {}

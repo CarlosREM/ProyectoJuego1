@@ -125,8 +125,8 @@ public class MainViewController implements Initializable {
     @FXML
     private void btnGenerarAction(ActionEvent event) {
         gamePane.getChildren().clear();
-        GeneratorManager gm = new GeneratorManager(0 - (paneWidth/2)+50, 0 + (paneWidth/2)-50,
-                                                   0 - (paneHeight/2)+50, 0 + (paneHeight/2)-50);
+        GeneratorManager gm = new GeneratorManager(0 - (paneWidth/2), 0 + (paneWidth/2),
+                                                   0 - (paneHeight/2), 0 + (paneHeight/2));
         gm.loadCharacters(gamePane,Integer.parseInt(txtCantPersonajes.getText()));
     }
 }

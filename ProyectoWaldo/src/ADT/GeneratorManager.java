@@ -66,8 +66,8 @@ public class GeneratorManager {
                 });
 
                 gamePane.getChildren().add(characterImageView);
-                characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX-50, maxX+50));
-                characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY-50, maxY+50));
+                characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX+character.getWidth()+100, maxX-character.getWidth()-100));
+                characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY+character.getWidth()+100, maxY-character.getWidth()-100));
             }
         }
         GameManager.getInstance().setMaxCharacters(counter);

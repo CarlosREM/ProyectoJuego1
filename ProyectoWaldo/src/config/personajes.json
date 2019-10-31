@@ -1,5 +1,13 @@
 [
   {
+    "image": "./src/resources/personajes/Mr Krabs.png",
+    "height": 100,
+    "width": 100,
+    "nombre": "Mr Krabs",
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
     "image": "./src/resources/personajes/Wenda.png",
     "height": 100,
     "width": 75,
@@ -20,7 +28,15 @@
     "height": 50,
     "width": 50,
     "nombre": "Megaman mamado",
-    "isWaldo": false,
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Mario Bros.png",
+    "height": 50,
+    "width": 50,
+    "nombre": "Mario Bros",
+    "isWaldo": true,
     "useOnGeneration": true
   },
   {
@@ -32,11 +48,19 @@
     "useOnGeneration": true
   },
   {
+    "image": "./src/resources/personajes/CJ.png",
+    "height": 100,
+    "width": 75,
+    "nombre": "CJ",
+    "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
     "image": "./src/resources/personajes/Megaman.png",
     "height": 50,
     "width": 50,
     "nombre": "Megaman",
-    "isWaldo": false,
+    "isWaldo": true,
     "useOnGeneration": true
   },
   {
@@ -45,6 +69,14 @@
     "width": 75,
     "nombre": "Waldo",
     "isWaldo": true,
+    "useOnGeneration": true
+  },
+  {
+    "image": "./src/resources/personajes/Esponja gar.png",
+    "height": 100,
+    "width": 100,
+    "nombre": "Esponja gar",
+    "isWaldo": false,
     "useOnGeneration": true
   },
   {
