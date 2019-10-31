@@ -3,6 +3,7 @@ package adt;
 import adt.Character;
 import adt.CharacterPrototypeFactory;
 import java.io.File;
+import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -34,10 +35,10 @@ public class GeneratorManager {
         this.maxY = maxY;
     }
         
-    public void loadCharacters(StackPane gamePane) {
+    public void loadCharacters(StackPane gamePane, int amount) {
         GameManager.getInstance().setCurrentFoundCharacters(0);
         loadBasicCharacters(gamePane);
-        //ahi van los otros bichos
+        loadExtraCharacters(gamePane, amount);
     }
     
     public void loadBasicCharacters(StackPane gamePane) {
@@ -59,23 +60,44 @@ public class GeneratorManager {
                         if(verifyWinnerCondition()){
                             showMessage(AlertType.INFORMATION, "Ha encontrado todos los personajes. Felicidades!", "Ganador - Juego terminado");
                         }
-
                         characterImageView.setVisible(false);
-
                         event.consume();
                     }
                 });
 
                 gamePane.getChildren().add(characterImageView);
-                characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-                characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
+                characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX-50, maxX+50));
+                characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY-50, maxY+50));
             }
         }
         GameManager.getInstance().setMaxCharacters(counter);
     }
     
-    public void loadExtraCharacters(int amount){
+    public void loadExtraCharacters(StackPane gamePane, int amount){
+        int trueAmount;
+        ArrayList<Image> extraCharactersImages = new ArrayList<>();
+        File characterImageFile;
+        Image characterImage;
         
+        for (String key : CharacterPrototypeFactory.getKeys()){
+            Character character = (Character)CharacterPrototypeFactory.getPrototype(key);
+            if(character.isUseOnGeneration() && !character.isIsWaldo()){
+                characterImageFile = new File(character.getImage());
+                characterImage = new Image(characterImageFile.toURI().toString(), character.getWidth(), character.getHeight(), true, true);
+                extraCharactersImages.add(characterImage);
+            }
+        }
+
+        trueAmount = amount/extraCharactersImages.size();
+        ImageView characterImageView;
+        for(int i=0; i<trueAmount; i++){
+            for(Image character : extraCharactersImages){
+                characterImageView = new ImageView(character);
+                gamePane.getChildren().add(characterImageView);
+                characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
+                characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
+            }
+        }
     }
     
     private boolean verifyWinnerCondition(){

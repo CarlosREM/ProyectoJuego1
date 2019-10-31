@@ -121,103 +121,12 @@ public class MainViewController implements Initializable {
         }
 
     }
-    
-    public void loadBichos(){
-        Image megaman = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//personajes//Megaman.png", 100, 200, true, true);
-        Image waldo = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//personajes//Waldo.png", 100, 200, true, true);
-        Image wenda = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//personajes//Wenda.png", 100, 200, true, true);
-        Image woof = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//personajes//Woof.png", 100, 200, true, true);
-        Image odlaw = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//personajes//Odlaw.png", 100, 200, true, true);
-        Image wizard = new Image("file:///C://Users//Gómez Montero//Desktop//ProyectoJuego1//ProyectoWaldo//src//resources//personajes//Wizard.png", 100, 200, true, true);
-        ImageView waldo2 = new ImageView(waldo);
-        ImageView wenda2 = new ImageView(wenda);
-        ImageView woof2 = new ImageView(woof);
-        ImageView odlaw2 = new ImageView(odlaw);
-        ImageView wizard2 = new ImageView(wizard);
-        
-        
-        waldo2.setPickOnBounds(false);
-        wenda2.setPickOnBounds(false);
-        woof2.setPickOnBounds(false);
-        odlaw2.setPickOnBounds(false);
-        wizard2.setPickOnBounds(false);
-        
-        waldo2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Waldo");
-                event.consume();
-            }
-        });
-        wenda2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Wenda");
-                event.consume();
-            }
-        });
-        woof2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Woof");
-                event.consume();
-                
-                woof2.setVisible(false);
-            }
-        });
-        odlaw2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Odlaw");
-                event.consume();
-            }
-        });
-        wizard2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Wizard");
-                event.consume();
-            }
-        });
-        
-        
-        
-        int minX = 0-(paneWidth/2);
-        int maxX = 0+(paneWidth/2);
-        int minY = 0-(paneHeight/2);
-        int maxY = 0+(paneHeight/2);
-        
-       
-        
-        ImageView megaman2;
-        for(int i=0; i<100; i++){
-            megaman2 = new ImageView(megaman);
-            gamePane.getChildren().add(megaman2);
-            float num1 = RandomGenerator.getRandomIntegerBetweenRange(minX, maxX);
-            float num2 = RandomGenerator.getRandomIntegerBetweenRange(minY, maxY);
-            megaman2.setTranslateX(num1);
-            megaman2.setTranslateY(num2);
-        }
-        
-        gamePane.getChildren().addAll(waldo2, wenda2, woof2, odlaw2, wizard2); 
-        
-        waldo2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-        waldo2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
-        wenda2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-        wenda2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
-        woof2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-        woof2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
-        odlaw2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-        odlaw2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
-        wizard2.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-        wizard2.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
-        
-    }
-    
+
     @FXML
     private void btnGenerarAction(ActionEvent event) {
+        gamePane.getChildren().clear();
         GeneratorManager gm = new GeneratorManager(0 - (paneWidth/2)+50, 0 + (paneWidth/2)-50,
                                                    0 - (paneHeight/2)+50, 0 + (paneHeight/2)-50);
-        gm.loadCharacters(gamePane);
+        gm.loadCharacters(gamePane,Integer.parseInt(txtCantPersonajes.getText()));
     }
 }
