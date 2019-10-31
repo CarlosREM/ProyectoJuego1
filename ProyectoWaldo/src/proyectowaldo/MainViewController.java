@@ -110,9 +110,10 @@ public class MainViewController implements Initializable {
             newWindow.setResizable(false);
             newWindow.initOwner(btnConfig.getScene().getWindow());
             newWindow.initModality(Modality.WINDOW_MODAL);
-
             newWindow.showAndWait();
+            
             loadEscenarios();
+            gamePane.getChildren().clear();            
         }
         catch (Exception ex) {
             Alert alert = new Alert(AlertType.ERROR, "Ocurrio un error al abrir la ventana");

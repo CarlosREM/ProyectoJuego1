@@ -1,6 +1,30 @@
 [
   {
+    "nombre": "fondoIsometrico",
+    "image": "./src/resources/escenarios/fondoIsometrico.png"
+  },
+  {
     "nombre": "Fondo1",
     "image": "./src/resources/escenarios/Fondo1.png"
+  },
+  {
+    "nombre": "BikiniBottom",
+    "image": "./src/resources/escenarios/BikiniBottom.png"
+  },
+  {
+    "nombre": "Swamp",
+    "image": "./src/resources/escenarios/Swamp.png"
+  },
+  {
+    "nombre": "fondoMinecraft",
+    "image": "./src/resources/escenarios/fondoMinecraft.png"
+  },
+  {
+    "nombre": "fondo2",
+    "image": "./src/resources/escenarios/fondo2.png"
+  },
+  {
+    "nombre": "GroveStreet",
+    "image": "./src/resources/escenarios/GroveStreet.png"
   }
 ]

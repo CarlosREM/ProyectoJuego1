@@ -41,8 +41,8 @@ public class ConfigViewController implements Initializable {
     @FXML private Button btnGuardar;
     
     
-    private ArrayList<PnPersonajeController> personajeControllerArray = new ArrayList<>();
-    private ArrayList<PnEscenarioController> escenarioControllerArray = new ArrayList<>();
+    private static final ArrayList<PnPersonajeController> personajeControllerArray = new ArrayList<>();
+    private static final ArrayList<PnEscenarioController> escenarioControllerArray = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -185,6 +185,14 @@ public class ConfigViewController implements Initializable {
     private void btnCancelAction(ActionEvent event) {
         Stage stage = (Stage) btnCancelar.getScene().getWindow();
         stage.close();
+    }
+    
+    public static void eliminarController(PnItemController controller) {
+        if (controller.getClass() == PnPersonajeController.class)
+            personajeControllerArray.remove((PnPersonajeController) controller);
+        
+        else if (controller.getClass() == PnEscenarioController.class)
+            escenarioControllerArray.remove((PnEscenarioController) controller);
     }
   
 }

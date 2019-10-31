@@ -99,6 +99,7 @@ public abstract class PnItemController implements Initializable {
         if (alert.getResult() == ButtonType.YES) {
             FlowPane pnParent = (FlowPane) pnMain.getParent();
             pnParent.getChildren().remove(pnMain);
+            ConfigViewController.eliminarController(this);
         }
     }
     
