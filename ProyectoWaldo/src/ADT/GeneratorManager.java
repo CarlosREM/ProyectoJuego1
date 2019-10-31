@@ -44,32 +44,32 @@ public class GeneratorManager {
         int counter = 0;
         for (String key : CharacterPrototypeFactory.getKeys()) {
             Character character = (Character)CharacterPrototypeFactory.getPrototype(key);
-            if (!character.isIsWaldo())
-                continue;
-            counter++;
-            File file = new File(character.getImage());
-            Image characterImage = new Image(file.toURI().toString(), character.getWidth(), character.getHeight(), true,true);
-            ImageView characterImageView = new ImageView(characterImage);
-            characterImageView.setPickOnBounds(false);
-            characterImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    showMessage(AlertType.INFORMATION, character.getNombre() + " encontrado.", "Personaje encontrado");
-                    GameManager.getInstance().setCurrentFoundCharacters(
-                        GameManager.getInstance().getCurrentFoundCharacters() + 1);
-                    if(verifyWinnerCondition()){
-                        showMessage(AlertType.INFORMATION, "Ha encontrado todos los personajes. Felicidades!", "Ganador - Juego terminado");
+            if (character.isUseOnGeneration() && character.isIsWaldo()) {
+                counter++;
+                File file = new File(character.getImage());
+                Image characterImage = new Image(file.toURI().toString(), character.getWidth(), character.getHeight(), true,true);
+                ImageView characterImageView = new ImageView(characterImage);
+                characterImageView.setPickOnBounds(false);
+                characterImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        showMessage(AlertType.INFORMATION, character.getNombre() + " encontrado.", "Personaje encontrado");
+                        GameManager.getInstance().setCurrentFoundCharacters(
+                            GameManager.getInstance().getCurrentFoundCharacters() + 1);
+                        if(verifyWinnerCondition()){
+                            showMessage(AlertType.INFORMATION, "Ha encontrado todos los personajes. Felicidades!", "Ganador - Juego terminado");
+                        }
+
+                        characterImageView.setVisible(false);
+
+                        event.consume();
                     }
-                        
-                    characterImageView.setVisible(false);
-                    
-                    event.consume();
-                }
-            });
-            
-            gamePane.getChildren().add(characterImageView);
-            characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
-            characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
+                });
+
+                gamePane.getChildren().add(characterImageView);
+                characterImageView.setTranslateX(RandomGenerator.getRandomIntegerBetweenRange(minX, maxX));
+                characterImageView.setTranslateY(RandomGenerator.getRandomIntegerBetweenRange(minY, maxY));
+            }
         }
         GameManager.getInstance().setMaxCharacters(counter);
     }

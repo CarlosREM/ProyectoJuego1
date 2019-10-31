@@ -89,14 +89,16 @@ public class MainViewController implements Initializable {
         SelectedScenario = true;
         
         String key = cmBxEscenarios.getSelectionModel().getSelectedItem();
-        Scenario scenario = (Scenario) ScenarioPrototypeFactory.getPrototype(key);
-        File file = new File(scenario.getImage());
-        Image img = new Image(file.toURI().toString());
-        gamePane.setBackground(new Background(new BackgroundImage(img,
-                                              BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                                              BackgroundPosition.DEFAULT, bgSize)));
+        if(key != null){
+            Scenario scenario = (Scenario) ScenarioPrototypeFactory.getPrototype(key);
+            File file = new File(scenario.getImage());
+            Image img = new Image(file.toURI().toString());
+            gamePane.setBackground(new Background(new BackgroundImage(img,
+                                                  BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                                                  BackgroundPosition.DEFAULT, bgSize)));
+        }
     }
-
+    
     @FXML
     private void openConfigWindow(ActionEvent event) {
         Parent root;
@@ -113,7 +115,6 @@ public class MainViewController implements Initializable {
             loadEscenarios();
         }
         catch (Exception ex) {
-            ex.printStackTrace();
             Alert alert = new Alert(AlertType.ERROR, "Ocurrio un error al abrir la ventana");
             alert.setTitle("Error - Menu Principal");
             alert.showAndWait();
@@ -215,8 +216,8 @@ public class MainViewController implements Initializable {
     
     @FXML
     private void btnGenerarAction(ActionEvent event) {
-        GeneratorManager gm = new GeneratorManager(0 - paneWidth/2, 0 + paneWidth/2,
-                                                   0 - paneHeight/2, 0 + paneHeight/2);
+        GeneratorManager gm = new GeneratorManager(0 - (paneWidth/2)+50, 0 + (paneWidth/2)-50,
+                                                   0 - (paneHeight/2)+50, 0 + (paneHeight/2)-50);
         gm.loadCharacters(gamePane);
     }
 }

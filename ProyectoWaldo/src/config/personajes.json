@@ -1,48 +1,56 @@
 [
   {
     "image": "./src/resources/personajes/Wenda.png",
-    "height": 300,
-    "width": 150,
+    "height": 100,
+    "width": 75,
     "nombre": "Wenda",
     "isWaldo": true,
     "useOnGeneration": true
   },
   {
     "image": "./src/resources/personajes/Odlaw.png",
-    "height": 427,
-    "width": 252,
+    "height": 100,
+    "width": 75,
     "nombre": "Odlaw",
     "isWaldo": true,
     "useOnGeneration": true
   },
   {
+    "image": "./src/resources/personajes/Megaman mamado.png",
+    "height": 100,
+    "width": 75,
+    "nombre": "Megaman mamado",
+    "isWaldo": false,
+    "useOnGeneration": true
+  },
+  {
     "image": "./src/resources/personajes/Woof.png",
-    "height": 239,
-    "width": 344,
+    "height": 75,
+    "width": 100,
     "nombre": "Woof",
     "isWaldo": true,
     "useOnGeneration": true
   },
   {
     "image": "./src/resources/personajes/Megaman.png",
-    "height": 500,
-    "width": 500,
+    "height": 100,
+    "width": 100,
     "nombre": "Megaman",
     "isWaldo": false,
     "useOnGeneration": true
   },
   {
     "image": "./src/resources/personajes/Waldo.png",
-    "height": 300,
-    "width": 150,
+    "height": 100,
+    "width": 75,
     "nombre": "Waldo",
     "isWaldo": true,
     "useOnGeneration": true
   },
   {
     "image": "./src/resources/personajes/Wizard.png",
-    "height": 285,
-    "width": 180,
+    "height": 100,
+    "width": 75,
     "nombre": "Wizard",
     "isWaldo": true,
     "useOnGeneration": true
